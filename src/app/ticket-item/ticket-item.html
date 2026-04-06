@@ -1,0 +1,25 @@
+<h2>{{ eventName() }}</h2>
+
+<div>
+  <button (click)="decrease()">-</button>
+  <span>{{ quantity() }}</span>
+  <button (click)="increase()">+</button>
+</div>
+
+<br />
+
+<input
+  type="text"
+  placeholder="Cupom de desconto"
+  (keyup.enter)="applyCoupon($event)"
+/>
+
+<button (click)="applyCoupon($event)">
+  Aplicar Cupom
+</button>
+
+<br /><br />
+
+<button (click)="requestCancel()">
+  Solicitar Cancelamento
+</button>

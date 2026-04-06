@@ -1,0 +1,12 @@
+<h1>Angular Conf 2026 - Checkout VIP</h1>
+
+<app-ticket-item
+  [eventName]="'Angular Conf 2026'"
+  [(quantity)]="qtd"
+  (cancelRequest)="onCancel()"
+></app-ticket-item>
+
+<hr />
+
+<p>Status: {{ mensagemStatus() }}</p>
+<p>Total: R$ {{ qtd() * 150 }}</p>
