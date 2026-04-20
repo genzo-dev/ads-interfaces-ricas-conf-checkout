@@ -1,17 +1,29 @@
 <h2>Ingressos disponíveis</h2>
 
-@for (ticket of catalogo(); track ticket.id) {
-  <app-card [title]="ticket.nome">
+<ul>
+  @for (ticket of catalogo(); track ticket.id) {
+    <li class="p-4 rounded-xl shadow-mb mb-4" [class]="{ 'ingresso-destaque': ticket.tipo === 'VIP' }">
+      <app-card [title]="ticket.nome">
 
-    <p>{{ ticket.tipo }}</p>
-    <p>{{ ticket.descricao | resumo:40 }}</p>
+        <p>{{ ticket.tipo }}</p>
+        <p>{{ ticket.descricao | resumo:40 }}</p>
 
-    <button (click)="adicionar(ticket)">
-      Adicionar ao carrinho
-    </button>
+        <button (click)="adicionar(ticket)">
+          Adicionar ao carrinho
+        </button>
 
-  </app-card>
-}
+        <div class="barra-container">
+          <div
+            class="barra"
+            [style.width.%]="ticket.lotePercentual"
+            [style.background-color]="ticket.lotePercentual < 20 ? 'red' : 'green'"
+          ></div>
+        </div>
+
+      </app-card>
+    </li>
+  }
+</ul>
 
 <app-card title="Carrinho">
 

@@ -8,6 +8,7 @@ import { Card } from '../card/card';
   standalone: true,
   imports: [Card, CurrencyPipe, DatePipe, ResumoPipe],
   templateUrl: './checkout.html',
+  styleUrl: './checkout.css',
 })
 export class CheckoutComponent {
 
@@ -19,7 +20,8 @@ export class CheckoutComponent {
       data: new Date(),
       preco: 150,
       quantidade: 1,
-      descricao: 'Acesso completo ao evento, incluindo workshops exclusivos e networking premium com especialistas.'
+      descricao: 'Acesso completo ao evento, incluindo workshops exclusivos e networking premium com especialistas.',
+      lotePercentual: 15
     },
     {
       id: 2,
@@ -28,7 +30,8 @@ export class CheckoutComponent {
       data: new Date(),
       preco: 100,
       quantidade: 1,
-      descricao: 'Acesso às palestras principais e área comum do evento.'
+      descricao: 'Acesso às palestras principais e área comum do evento.',
+      lotePercentual: 75
     },
     {
       id: 3,
@@ -37,7 +40,8 @@ export class CheckoutComponent {
       data: new Date(),
       preco: 50,
       quantidade: 1,
-      descricao: 'Ingresso com desconto para estudantes mediante comprovação.'
+      descricao: 'Ingresso com desconto para estudantes mediante comprovação.',
+      lotePercentual: 35
     }
   ]);
 

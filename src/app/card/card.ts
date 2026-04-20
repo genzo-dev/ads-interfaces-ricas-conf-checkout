@@ -4,6 +4,7 @@ import { Component, input } from '@angular/core';
   selector: 'app-card',
   standalone: true,
   templateUrl: './card.html',
+  styleUrl: './card.css',
 })
 export class Card {
   title = input.required<string>();
