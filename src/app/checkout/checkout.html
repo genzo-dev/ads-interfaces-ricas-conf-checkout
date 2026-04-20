@@ -1,12 +1,58 @@
-<h1>Angular Conf 2026 - Checkout VIP</h1>
+<h2>Ingressos disponíveis</h2>
 
-<app-ticket-item
-  [eventName]="'Angular Conf 2026'"
-  [(quantity)]="qtd"
-  (cancelRequest)="onCancel()"
-></app-ticket-item>
+@for (ticket of catalogo(); track ticket.id) {
+  <app-card [title]="ticket.nome">
 
-<hr />
+    <p>{{ ticket.tipo }}</p>
+    <p>{{ ticket.descricao | resumo:40 }}</p>
 
-<p>Status: {{ mensagemStatus() }}</p>
-<p>Total: R$ {{ qtd() * 150 }}</p>
+    <button (click)="adicionar(ticket)">
+      Adicionar ao carrinho
+    </button>
+
+  </app-card>
+}
+
+<app-card title="Carrinho">
+
+  @if (carrinho().length === 0) {
+    <p>Seu carrinho está vazio</p>
+  } @else {
+
+    @for (item of carrinho(); track item.id) {
+
+      <app-card [title]="item.nome">
+
+        <p><strong>Tipo:</strong> {{ item.tipo }}</p>
+
+        @switch (item.tipo) {
+          @case ('VIP') {
+            <p>Acesso Total</p>
+          }
+          @case ('MEIA') {
+            <p>Obrigatório carteirinha</p>
+          }
+          @default {
+            <p>Acesso Padrão</p>
+          }
+        }
+
+        <p><strong>Data:</strong> {{ item.data | date:'dd/MM/yyyy' }}</p>
+
+        <p><strong>Preço:</strong> {{ item.preco | currency:'BRL' }}</p>
+
+        <p><strong>Qtd:</strong> {{ item.quantidade }}</p>
+
+        <p><strong>Descrição:</strong> {{ item.descricao | resumo:40 }}</p>
+
+      </app-card>
+
+    }
+
+  }
+
+</app-card>
+
+@if (totalQuantidade() > 2) {
+  <p>🎁 Você ganhou um brinde!</p>
+}
